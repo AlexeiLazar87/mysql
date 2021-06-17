@@ -1,0 +1,39 @@
+1. Вибрати усіх клієнтів, чиє ім'я має менше ніж 6 символів.
+SELECT * FROM client WHERE LENGTH(firstName) = 6;
+
+
+2. Вибрати львівські відділення банку.
+SELECT * FROM department WHERE DepartmentCity = 'Lviv';
+
+
+3. Вибрати клієнтів з вищою освітою та посортувати по прізвищу.
+SELECT * FROM client WHERE Education = 'high' ORDER BY LastName;
+
+
+4. Виконати сортування у зворотньому порядку над таблицею Заявка і вивести 5 останніх елементів.
+SELECT * FROM client ORDER BY LastName DESC LIMIT 5 OFFSET 0;
+
+
+5. Вивести усіх клієнтів, чиє прізвище закінчується на OV чи OVA.
+SELECT * FROM client WHERE LastName LIKE '%ov' OR '%ova';
+
+
+6. Вивести клієнтів банку, які обслуговуються київськими відділеннями.
+SELECT * FROM client WHERE Department_idDepartment IN (1,4);
+
+
+7. Вивести імена клієнтів та їхні номера телефону, погрупувавши їх за іменами.
+SELECT firstName, passport FROM client ORDER BY FirstName;
+
+
+8. Вивести дані про клієнтів, які мають кредит більше ніж на 5000 тисяч гривень.
+SELECT * FROM client WHERE idClient IN (SELECT Client_idClient FROM application WHERE Sum > 5000);
+
+
+9. Порахувати кількість клієнтів усіх відділень та лише львівських відділень.
+SELECT SUM(CountOfWorkers) FROM department;
+SELECT SUM(CountOfWorkers) FROM department WHERE DepartmentCity = 'Lviv';
+
+
+
+
